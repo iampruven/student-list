@@ -48,10 +48,12 @@ body {
 .tag-align{
   display:flex;
   flex-direction: row;
-  background-color:#808080;
+  margin-left:20px;
+}
+.individual-tag{
+  background-color:#ececec;
   border-radius: 5px;
-  justify-content: left;
-
+  text-align: center;
 }
 form{
   display:flex;

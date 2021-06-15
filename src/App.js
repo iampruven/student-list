@@ -5,8 +5,13 @@ function App() {
   const [students, setStudents] = useState([]);
   const [name, setName] = useState("");
   const [expanded, setExpanded] = useState([]);
-  const [tags, setTags] = useState([]);
-  const [newTag, setNewTag] = useState("");
+  const [tags, setTags] = useState({
+    // "9889": ['aa','aaa']
+  });
+  const [newTag, setNewTag] = useState({
+    // "98": "ouhohhohoih"
+  });
+
   useEffect(() => {
     fetch("https://api.hatchways.io/assessment/students")
       .then((res) => res.json())
@@ -16,11 +21,21 @@ function App() {
       })
       .catch((e) => console.log(e));
   }, []);
-  const handleTag = (e) => {
+  const handleTag = (e, id) => {
     console.log(newTag);
     if (e.keyCode === 13) {
-      setTags(tags.concat([newTag]));
-      setNewTag("");
+      const newTags = { ...tags };
+      if (!newTags[id]) {
+        newTags[id] = [];
+      }
+      console.log(newTags)
+      newTags[id].push(newTag[id]);
+      console.log('newTag',newTags)
+      setTags(newTags);
+      setNewTag({
+        ...newTag,
+        [id]: [],
+      });
     }
   };
   console.log(tags);
@@ -90,16 +105,20 @@ function App() {
                             </p>
                           ))}
                         <div className="tag-align">
-                          {tags.map((tag, id) => (
-                            <p>{tag}</p>
-                          ))}
+                          {tags[student.id] &&
+                            tags[student.id].map((tag) => <p className="individual-tag">{tag}</p>)}
                         </div>
                         <input
                           type="text"
                           className="new-tag"
-                          value={newTag}
-                          onChange={(e) => setNewTag(e.target.value)}
-                          onKeyDown={(e) => handleTag(e)}
+                          value={newTag[student.id]}
+                          onChange={(e) =>
+                            setNewTag({
+                              ...newTag,
+                              [student.id]: e.target.value,
+                            })
+                          }
+                          onKeyDown={(e) => handleTag(e, student.id)}
                           placeholder="Add tag"
                         />
                       </div>
