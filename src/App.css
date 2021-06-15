@@ -39,8 +39,23 @@ body {
   align-self: flex-start;
   margin:6px;
 }
+.new-tag{
+  margin-bottom:10px;
+  border-bottom: 1px solid #808080;;
+  color:#808080;
+  margin-left: 20px;
+}
+.tag-align{
+  display:flex;
+  flex-direction: row;
+  background-color:#808080;
+  border-radius: 5px;
+  justify-content: left;
+
+}
 form{
   display:flex;
+  flex-direction: column;
   margin:6px;
 }
 input {
@@ -51,6 +66,7 @@ input {
   height:36px;
   font-size: 22px;
   padding:5px;
+  margin:5px;
 }
 h1 {
   font-weight: bold;

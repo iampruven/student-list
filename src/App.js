@@ -5,8 +5,8 @@ function App() {
   const [students, setStudents] = useState([]);
   const [name, setName] = useState("");
   const [expanded, setExpanded] = useState([]);
-  
-
+  const [tags, setTags] = useState([]);
+  const [newTag, setNewTag] = useState("");
   useEffect(() => {
     fetch("https://api.hatchways.io/assessment/students")
       .then((res) => res.json())
@@ -16,7 +16,14 @@ function App() {
       })
       .catch((e) => console.log(e));
   }, []);
-
+  const handleTag = (e) => {
+    console.log(newTag);
+    if (e.keyCode === 13) {
+      setTags(tags.concat([newTag]));
+      setNewTag("");
+    }
+  };
+  console.log(tags);
   return (
     <>
       <div className="container">
@@ -27,6 +34,12 @@ function App() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Search by name"
+          />
+          <input
+            type="text"
+            value={tags}
+            onChange={(e) => setTags(e.target.value)}
+            placeholder="Search by tag"
           />
         </form>
         <ul>
@@ -76,6 +89,19 @@ function App() {
                               Test {id + 1}: {grade}%
                             </p>
                           ))}
+                        <div className="tag-align">
+                          {tags.map((tag, id) => (
+                            <p>{tag}</p>
+                          ))}
+                        </div>
+                        <input
+                          type="text"
+                          className="new-tag"
+                          value={newTag}
+                          onChange={(e) => setNewTag(e.target.value)}
+                          onKeyDown={(e) => handleTag(e)}
+                          placeholder="Add tag"
+                        />
                       </div>
                       <div className="btn">
                         <button

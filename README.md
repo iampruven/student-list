@@ -8,6 +8,14 @@
 - search by input text
 - scroll within section
 
+
+## Features still need to add
+- add tags per ID
+- pic should not move when expanded
+- scroll bar needs to hide
+- remove the padding around the container
+
+
 ```
 npm start
 ```
