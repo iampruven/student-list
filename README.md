@@ -1,6 +1,6 @@
 # Hatchway & Trunk Frontend Assessment
 
-## Features
+## Features (Part 1-5 completed)
 - display all students
 - displays average grade per student
 - button to expand and close each student's data
@@ -10,13 +10,15 @@
 - add tags per ID
 - search per tag
     - need to put in lower case
-## Features still need to add
-
-- pic should not move when expanded
-- scroll bar needs to hide
-- remove the padding around the container
 
 
+## Thoughts..
+- if I had more time, I would have done more refactoring... 
+
+
+
+## Get Started
 ```
+npm install
 npm start
 ```

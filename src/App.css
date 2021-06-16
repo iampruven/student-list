@@ -4,9 +4,9 @@ body {
 }
 
 .container {
-  margin:7em 18em;
+  margin: 7em 18em;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  display:flex;
+  display: flex;
   flex-direction: column;
   border-radius: 10px;
   height: 550px;
@@ -17,8 +17,6 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
-
 }
 .pic-container {
   flex-basis: 25%;
@@ -33,50 +31,51 @@ body {
   align-items: center;
 }
 .data {
-  flex-grow:1;
+  flex-grow: 1;
 }
-.btn{
+.btn {
   align-self: flex-start;
-  margin:6px;
+  margin: 6px;
 }
-.new-tag{
-  margin-bottom:10px;
-  border-bottom: 1px solid #808080;;
-  color:#808080;
+.new-tag {
+  margin-bottom: 10px;
+  border-bottom: 1px solid #808080;
+  color: #808080;
   margin-left: 20px;
 }
-.tag-align{
-  display:flex;
+.tag-align {
+  display: flex;
   flex-direction: row;
-  margin-left:20px;
-}
-.individual-tag{
-  background-color:#ececec;
-  border-radius: 5px;
+  margin-left: 10px;
   text-align: center;
-  height:40px;
 }
-form{
-  display:flex;
+.individual-tag {
+  background-color: #ececec;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 0 10px;
+}
+form {
+  display: flex;
   flex-direction: column;
-  margin:6px;
+  margin: 6px;
 }
 input {
-  border:none;
-  outline:0;
+  border: none;
+  outline: 0;
   border-bottom: 1px solid #ececec;
-  flex:1;
-  height:36px;
+  flex: 1;
+  height: 36px;
   font-size: 22px;
-  padding:5px;
-  margin:5px;
+  padding: 5px;
+  margin: 5px;
 }
 h1 {
   font-weight: bold;
   font-size: 44px;
 }
-p {
-  text-indent: 20px;
+.indenting {
+  margin-left: 20px;
 }
 ul {
   list-style-type: none;
@@ -86,11 +85,11 @@ ul {
 li {
   border-bottom: 1px solid #ececec;
 }
-button{
-  border:0;
+button {
+  border: 0;
   padding: 0;
   background-color: transparent;
-  font-size:80px;
+  font-size: 80px;
   font-family: inherit;
   color: #808080;
   cursor: pointer;
