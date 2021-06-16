@@ -158,23 +158,18 @@ function App() {
                   student={student}
                   expanded={expanded.includes(student.id)}
                   expandBtnClicked={() => {
-                    //if expanded
                     if (expanded.includes(student.id)) {
                       setExpanded(expanded.filter((x) => student.id !== x));
                     } else {
-                      //if not expanded
                       setExpanded(expanded.concat([student.id]));
                     }
                   }}
                   tags={tags[student.id]}
                   onNewTagSubmitted={(newTag) => {
                     const newTags = { ...tags };
-                    // newTags = {}
                     if (!newTags[student.id]) {
-                      // newTags = {1: []}
                       newTags[student.id] = [];
                     }
-                    // newTags = {1: ['newTag']}
                     newTags[student.id].push(newTag);
                     setTags(newTags);
                   }}
