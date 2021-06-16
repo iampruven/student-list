@@ -7,10 +7,11 @@
     - upon expansion all of the test scores are shown
 - search by input text
 - scroll within section
-
-
-## Features still need to add
 - add tags per ID
+- search per tag
+    - need to put in lower case
+## Features still need to add
+
 - pic should not move when expanded
 - scroll bar needs to hide
 - remove the padding around the container

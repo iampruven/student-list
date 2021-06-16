@@ -54,6 +54,7 @@ body {
   background-color:#ececec;
   border-radius: 5px;
   text-align: center;
+  height:40px;
 }
 form{
   display:flex;

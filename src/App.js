@@ -5,12 +5,9 @@ function App() {
   const [students, setStudents] = useState([]);
   const [name, setName] = useState("");
   const [expanded, setExpanded] = useState([]);
-  const [tags, setTags] = useState({
-    // "9889": ['aa','aaa']
-  });
-  const [newTag, setNewTag] = useState({
-    // "98": "ouhohhohoih"
-  });
+  const [tags, setTags] = useState({});
+  const [newTag, setNewTag] = useState({});
+  const [searchTag, setSearchTag] = useState("");
 
   useEffect(() => {
     fetch("https://api.hatchways.io/assessment/students")
@@ -28,9 +25,9 @@ function App() {
       if (!newTags[id]) {
         newTags[id] = [];
       }
-      console.log(newTags)
+      console.log(newTags);
       newTags[id].push(newTag[id]);
-      console.log('newTag',newTags)
+      console.log("newTag", newTags);
       setTags(newTags);
       setNewTag({
         ...newTag,
@@ -38,7 +35,48 @@ function App() {
       });
     }
   };
-  console.log(tags);
+
+  const studentMatchesNameSearch = (student, searchTerm) => {
+    if (!searchTerm) {
+      return true;
+    }
+
+    return (
+      student.firstName.toLowerCase().includes(name.toLowerCase()) ||
+      student.lastName.toLowerCase().includes(name.toLowerCase())
+    );
+  };
+
+  const studentMatchesTag = (student, tag) => {
+    if (!tag) {
+      return true 
+    }
+
+    const tagsOfStudent = tags[student.id];
+    if (!tagsOfStudent) {
+      console.log(`student ${student.firstName} does not match ${tag}`);
+      return false;
+    }
+    console.log(
+      `student ${student.firstName} matches ${tag}? ${tagsOfStudent.includes(
+        tag
+      )}`
+    );
+
+    return doesStringMatchAnyStringInArray(tagsOfStudent, tag);
+  
+  };
+
+
+  const doesStringContainOtherString = (s, searchTerm) => {
+    return s.toLowerCase().includes(searchTerm.toLowerCase())
+  }
+  const doesStringMatchAnyStringInArray = (arrayStrings, searchTerm) => {
+    return arrayStrings.map(str=>doesStringContainOtherString(str,searchTerm)).includes(true)
+  }
+
+
+  console.log("this tag", tags);
   return (
     <>
       <div className="container">
@@ -52,8 +90,8 @@ function App() {
           />
           <input
             type="text"
-            value={tags}
-            onChange={(e) => setTags(e.target.value)}
+            value={searchTag}
+            onChange={(e) => setSearchTag(e.target.value)}
             placeholder="Search by tag"
           />
         </form>
@@ -62,16 +100,14 @@ function App() {
             [...students]
               .filter((student) => {
                 if (
-                  student.firstName
-                    .toLowerCase()
-                    .includes(name.toLowerCase()) ||
-                  student.lastName.toLowerCase().includes(name.toLowerCase())
+                  studentMatchesNameSearch(student, name) &&
+                  studentMatchesTag(student, searchTag)
                 ) {
                   return true;
                 }
                 return false;
               })
-              .map((student, id) => {
+              .map((student) => {
                 return (
                   <>
                     <li className="arrange" key={student.id}>
@@ -106,7 +142,9 @@ function App() {
                           ))}
                         <div className="tag-align">
                           {tags[student.id] &&
-                            tags[student.id].map((tag) => <p className="individual-tag">{tag}</p>)}
+                            tags[student.id].map((tag) => (
+                              <p className="individual-tag">{tag}</p>
+                            ))}
                         </div>
                         <input
                           type="text"
