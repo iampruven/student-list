@@ -1,4 +1,3 @@
-# Hatchway & Trunk Frontend Assessment
 Find deployed version here:
 https://student-list-six.vercel.app
 ## Features (Part 1-5 completed)
